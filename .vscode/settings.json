@@ -7,5 +7,14 @@
   },
   "[prisma]": {
     "editor.formatOnSave": true
-  }
+  },
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "redwood_blog",
+      "database": "${workspaceFolder:redwoodblog}/api/db/dev.db"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
 }
