@@ -29,7 +29,7 @@ describe('BlogPostCell', () => {
 
   it('renders Success successfully', async () => {
     expect(() => {
-      render(<Success blogPost={standard().blogPost} />)
+      render(<Success post={standard().post} />)
     }).not.toThrow()
   })
 })
