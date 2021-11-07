@@ -1,4 +1,4 @@
-import { MetaTags } from '@redwoodjs/web'
+import { MetaTags, useMutation } from '@redwoodjs/web'
 import {
   Form,
   Submit,
@@ -6,13 +6,31 @@ import {
   TextField,
   Label,
   FieldError,
+  FormError,
+  useForm,
 } from '@redwoodjs/forms'
+import toast, { Toaster } from 'react-hot-toast'
 
-const onSubmit = (a) => {
-  console.log(a)
-}
+const CREATE_CONTACT = gql`
+  mutation CreateContactMuation($input: CreateContactInput!) {
+    createContact(input: $input) {
+      id
+    }
+  }
+`
 
 const ContactPage = () => {
+  const [create, { loading, error }] = useMutation(CREATE_CONTACT, {
+    onCompleted: () => {
+      toast.success('contact created.')
+    },
+  })
+  const formMethods = useForm()
+  const onSubmit = (data) => {
+    create({ variables: { input: data } })
+    if (!error) formMethods.reset()
+    console.log(data)
+  }
   return (
     <>
       <MetaTags
@@ -22,7 +40,9 @@ const ContactPage = () => {
         You can look at this documentation for best practices : https://developers.google.com/search/docs/advanced/appearance/good-titles-snippets */
       />
       <h1>ContactPage</h1>
-      <Form onSubmit={onSubmit}>
+      <Toaster />
+      <Form onSubmit={onSubmit} error={error} formMethods={formMethods}>
+        <FormError error={error} wrapperClassName="error" />
         <Label name="name">name</Label>
         <TextField
           name="name"
@@ -37,15 +57,23 @@ const ContactPage = () => {
           errorClassName="error"
           validation={{
             required: true,
-            pattern: {
-              value: /[^@]+@[^.]+\..+/,
-              message: 'not valid email format',
-            },
+            // pattern: {
+            //   value: /[^@]+@[^.]+\..+/,
+            //   message: 'not valid email format',
+            // },
           }}
         ></TextAreaField>
         <FieldError name="email" className="error"></FieldError>
 
-        <Submit>submit</Submit>
+        <Label name="message">message</Label>
+        <TextAreaField
+          name="message"
+          validation={{ required: true }}
+          errorClassName="error"
+        />
+        <FieldError name="message" className="error" />
+
+        <Submit disabled={loading}>submit</Submit>
       </Form>
     </>
   )
