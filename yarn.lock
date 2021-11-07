@@ -2574,7 +2574,7 @@
     pino-pretty "7.1.0"
     uuid "8.3.2"
 
-"@redwoodjs/auth@0.38.0":
+"@redwoodjs/auth@0.38.0", "@redwoodjs/auth@^0.38.0":
   version "0.38.0"
   resolved "https://registry.npmmirror.com/@redwoodjs/auth/download/@redwoodjs/auth-0.38.0.tgz#5ea0ac194e066c3a2229822393dda16fb5de2a43"
   integrity sha1-XqCsGU4GbDoiKYIjk92hb7XeKkM=
@@ -12544,6 +12544,11 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npm.taobao.org/nested-error-stacks/download/nested-error-stacks-2.1.0.tgz#0fbdcf3e13fe4994781280524f8b96b0cdff9c61"
   integrity sha1-D73PPhP+SZR4EoBST4uWsM3/nGE=
+
+netlify-identity-widget@^1.9.2:
+  version "1.9.2"
+  resolved "https://registry.nlark.com/netlify-identity-widget/download/netlify-identity-widget-1.9.2.tgz#4339c9155fc4c2570ae3ddd61825d952b574b02e"
+  integrity sha1-QznJFV/EwlcK493WGCXZUrV0sC4=
 
 new-github-issue-url@0.2.1:
   version "0.2.1"
